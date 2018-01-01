@@ -1,0 +1,41 @@
+﻿@model BasicWebApp.Models.Reset;
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Join</title>
+</head>
+
+<body>
+    @using (Html.BeginForm("Post"))
+    {
+        @Html.ValidationSummary(true)
+        {
+
+            <fieldset>
+                <legend> Reset Password </legend>
+
+                <div class="editor">
+                    @Html.TextBoxFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                <div class="editor">
+                    @Html.TextBoxFor(model => model.NewPassword)
+                    @Html.ValidationMessageFor(model => model.NewPassword)
+                    <button type="submit"> Reset Password</button>
+                </div>
+
+            </fieldset>
+        }
+    }
+</body>
+</html>  
+

@@ -1,0 +1,13 @@
+﻿@model BasicWebApp.Models.PostModel
+@using BasicWebApp.Models;
+
+@{
+    ViewData["Title"] = "Index";
+}
+       
+
+<div id="posts">
+    <img src = @Model.Image /> 
+    <h3>@Model.Comment</h3>
+</div>
+    

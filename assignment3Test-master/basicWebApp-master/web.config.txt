@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
+    <system.web>
+	<authentication mode="Forms"></authentication>
+	<forms loginUrl="Login" name=".ASPXFORMSAUTH"></forms>
+	<authorization>
+	<deny users="?" />
+  	</authorization>
+    </system.web>
+</configuration>
+<appSettings>
+    <add key="HostName"   value="The host name as given by my company" />
+    <add key="PortNumber" value="25" />
+</appSettings>

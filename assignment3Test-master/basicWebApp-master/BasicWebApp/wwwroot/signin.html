@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+    <head>
+       <title>Sign In</title>
+    </head>
+    <!-- add the onload event handler to the body tag -->
+    <body>
+        <div id="app5" align="center">
+            <my-component></my-component>
+        </div>
+    </body>
+     <!-- our local copy of the moonjs library. Normally, we'd use a CDN copy to use someone else's bandwidth -->
+        <script src="https://unpkg.com/moonjs/dist/moon.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         <!-- Production Build -->
+        <script src="https://unpkg.com/moonjs"></script>
+
+        <!-- Development Build -->
+        <script src="https://unpkg.com/moonjs/dist/moon.js"></script>
+        <script src="app5.js"></script>
+        
+        <!-- I am including this script directly in the HTML, but usually this would be in its own file  -->
+        <script>
+            /*global $*/
+            function handleSigninAttempt(){
+                var email = $('#email').val();
+                var password = $('#password').val();
+                
+                if (email.length > 0 && password.length > 0){
+                    Promise.resolve()
+                    .then(function () {
+                        return $.ajax({
+                            url: "signin",
+                            method: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSON.stringify({ username: email, password: password }),
+                            dataType: "json"
+                        });
+                    })
+                    .then(function(auth){
+                        if (auth.isValid){
+                            $('#error').text = '';
+                            window.location.replace('posts');
+                        } else {
+                            $('#error').html(auth.message);
+                            $('#email').html('');
+                            $('#password').html('');
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
+                } else {
+                    $('#error').html('Please provide both username and password');
+                }
+            }
+
+        </script>
+        
+</html>

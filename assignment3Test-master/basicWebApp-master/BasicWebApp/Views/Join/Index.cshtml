@@ -1,0 +1,47 @@
+﻿@model BasicWebApp.Models.User;
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Join</title>
+</head>
+
+<body>
+    @using (Html.BeginForm("Post"))
+    {
+        @Html.ValidationSummary(true)
+        {
+
+            <fieldset>
+                <legend> Create New Account</legend>
+
+                <div class="editor">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email)
+
+                </div>
+                <div class="editor">
+                    @Html.LabelFor(model => model.Password)
+
+                    @Html.PasswordFor(Model => Model.Password)
+
+                </div>
+
+                <div class="editor">
+                    <input type="submit" value="Join" />
+                </div>
+
+                @Html.ActionLink("login", "login");
+
+            </fieldset>
+        }
+    }
+</body>
+</html>  

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- our local copy of the moonjs library. Normally, we'd use a CDN copy to use someone else's bandwidth -->
+       
+    </head>
+    <!-- add the onload event handler to the body tag -->
+    <body>
+        <div id="app1" align="center">
+            <my-component></my-component>
+        </div>
+      
+    </body>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+      <script src="js/bootstrap.min.js"></script>
+          <script src="https://unpkg.com/moonjs@0.11.0/dist/moon.js"></script>
+    	<script src="https://unpkg.com/moon-router@0.1.3/dist/moon-router.min.js"></script>
+    	<script src="app1.js"></script>
+        
+        <!-- I am including this script directly in the HTML, but usually this would be in its own file  -->
+        <script>
+            /*global $*/
+            function handleJoinAttempt(){
+                window.alert("Check function");
+                var email = $('#email').val();
+                 window.alert("email"+email);
+                var password = $('#password').val();
+                var repeatPassword = $('#repeat_password').val();
+                
+                if (email.length > 0 && password.length > 0 && repeatPassword.length > 0 && password == repeatPassword) {
+                     window.alert("Check validation");
+                              
+                    Promise.resolve()
+                        .then(function () {
+                            return $.post('login.html', { Email: email, Password: password });
+                    })
+                    .then(function(auth){
+                        if (auth){
+                             window.alert("Check auth");
+                            $('#error').text = '';
+                            window.location.replace('login.html');
+                        } else {
+                            alert("something went wrong");
+                            window.location.replace('join.html');
+                        }
+                    })
+                    .catch(function(err){
+                        console.log(err);
+                    })
+                } else {
+                    $('#error').html('Please provide both username and password and ensure passwords match');
+                }
+            }
+
+        </script>
+      
+    
+
+</html>
